@@ -1,6 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+// Example building greeting section with ES6 class components
+
 class Greeting extends React.Component {
   render () {
     return (
@@ -11,20 +13,16 @@ class Greeting extends React.Component {
   }
 }
 
-const USER = {
+const user = {
   name: "Maggie"
 };
 
 ReactDOM.render(
-  <Greeting name={USER.name} />,
+  <Greeting name={user.name} />,
   document.getElementById("app")
 );
 
-const USER_DATA = {
-  name: 'Chris Haaaaaaaack',
-  username: 'chryus',
-  image: 'https://avatars0.githubusercontent.com/u/5354390?v=3&s=460'
-}
+// Example building avatar section with ES6 class components
 
 class ProfilePic extends React.Component {
   render () {
@@ -64,7 +62,70 @@ class Avatar extends React.Component {
   }
 }
 
+const user_data = {
+  name: 'Chris Haaaaaaaack',
+  username: 'chryus',
+  image: 'https://avatars0.githubusercontent.com/u/5354390?v=3&s=460'
+}
+
 ReactDOM.render(
-  <Avatar user={USER_DATA} />,
-  document.getElementById("avatar-section")
-);
+  <Avatar user={user_data} />,
+  document.getElementById('avatar-section')
+)
+
+// Example building comment section with stateless functional components
+
+function formatDate(date) {
+  return date.toLocaleDateString();
+}
+
+function CommentAvatar(props) {
+  return (
+    <img className="Avatar" style={{width:100, height:100}}
+      src={props.user.avatarUrl}
+      alt={props.user.name} />
+  );
+}
+
+function UserInfo(props) {
+  return (
+    <div className="UserInfo">
+      <CommentAvatar user={props.user} />
+      <div className="UserInfo-name">
+        {props.user.name}
+      </div>
+    </div>
+  );
+}
+
+// Components must return a single root element. This is why we added a <div> to contain all the <Welcome /> elements.
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <UserInfo user={props.author} />
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+}
+
+const comment = {
+  date: new Date(),
+  text: "I am learning React it's totes groovy",
+  author: {
+    name: "Stevie Wonder",
+    avatarUrl: "http://rockandrollphotogallery.com/wp-content/uploads/2014/01/37.Stevie_Wonder_Harmonica_1975.JPG"
+  }
+}
+
+ReactDOM.render(
+  <Comment
+    date={comment.date}
+    text={comment.text}
+    author={comment.author} />,
+  document.getElementById('comment')
+)
