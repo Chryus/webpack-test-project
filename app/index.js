@@ -73,6 +73,51 @@ ReactDOM.render(
   document.getElementById('avatar-section')
 )
 
+
+// Example building avatar section with stateless functional components
+
+function ProfilePic(props) {
+  return (
+    <img src={props.imageUrl} style={{width:100, height:100}}/>
+  );
+}
+
+function ProfileName(props) {
+  return (
+    <div>{props.name}</div>
+  );
+}
+
+function ProfileLink(props) {
+  return (
+    <a href={'https://www.github.com/' + props.username}>
+      {props.username}
+    </a>
+  );
+}
+
+function Avatar(props) {
+  return (
+    <div>
+      <ProfilePic imageUrl={props.user.image} />
+      <ProfileName name={props.user.name} />
+      <ProfileLink username={props.user.username} />
+    </div>
+  );
+}
+
+const user_data = {
+  name: 'Chris Haaaaaaaack',
+  username: 'chryus',
+  image: 'https://avatars0.githubusercontent.com/u/5354390?v=3&s=460'
+}
+
+ReactDOM.render(
+  <Avatar user={user_data} />,
+  document.getElementById('avatar')
+)
+
+
 // Example building comment section with stateless functional components
 
 function formatDate(date) {
