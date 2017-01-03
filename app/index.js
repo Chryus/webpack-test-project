@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 // Example building greeting section with ES6 class components
 
@@ -62,15 +62,15 @@ class Avatar extends React.Component {
   }
 }
 
-const user_data = {
+const __user_data = {
   name: 'Chris Haaaaaaaack',
   username: 'chryus',
   image: 'https://avatars0.githubusercontent.com/u/5354390?v=3&s=460'
 }
 
 ReactDOM.render(
-  <Avatar user={user_data} />,
-  document.getElementById('avatar-section')
+  <Avatar user={__user_data} />,
+  document.getElementById('avatar')
 )
 
 
